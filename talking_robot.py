@@ -27,10 +27,10 @@ def get_answer_bing(question):
     return  req.json()['webPages']['value'][0]['snippet']
 
 def detected_callback():
+    detector.interrupted = True
     asr = start_google_asr()
     print(asr)
-    detector = snowboydecoder.HotwordDetector("hello_vera.pmdl", sensitivity=0.5, audio_gain=1)
-    detector.start(detected_callback)
+    detector.interrupted = False
 
 
 detector = snowboydecoder.HotwordDetector("hello_vera.pmdl", sensitivity=0.5, audio_gain=1)
